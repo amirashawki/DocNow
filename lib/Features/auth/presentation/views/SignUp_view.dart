@@ -11,16 +11,9 @@ import 'package:docnow_app/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class SignUpView extends StatelessWidget {
+  const SignUpView({super.key});
 
-  @override
-  State<LoginView> createState() => _LoginViewState();
-}
-
-bool isShow = false;
-
-class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldAuth(
@@ -28,9 +21,9 @@ class _LoginViewState extends State<LoginView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 80),
+            SizedBox(height: 33),
             Text(
-              'Login',
+              'Sign Up',
               style: TextStyle(
                 fontSize: 24,
                 color: AppColor.kprimaryColor,
@@ -39,9 +32,8 @@ class _LoginViewState extends State<LoginView> {
             ),
             SizedBox(height: 16),
             Text(
-              'Please log in to your account to continue.'
-              'If you havent registered yet, sign up '
-              'now and enjoy our features.',
+              'Please enter your information to create a'
+              ' new account. ',
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 40),
@@ -51,12 +43,22 @@ class _LoginViewState extends State<LoginView> {
                 children: [
                   SizedBox(height: 42),
                   CustomTextFormField(
+                    hintText: 'Full Name',
+                    image: Assets.imagesFrame,
+                  ),
+                  SizedBox(height: 16),
+                  CustomTextFormField(
                     hintText: 'Email',
-                    image: Assets.imagesSms,
+                    image: Assets.imagesCall,
                   ),
                   SizedBox(height: 16),
                   CustomTextFormField(
                     hintText: 'passWord',
+                    image: Assets.imagesLock,
+                  ),
+                  SizedBox(height: 16),
+                  CustomTextFormField(
+                    hintText: 'Confirm passWord',
                     image: Assets.imagesLock,
                   ),
                 ],
@@ -64,6 +66,11 @@ class _LoginViewState extends State<LoginView> {
               columnPhone: Column(
                 children: [
                   SizedBox(height: 42),
+                  CustomTextFormField(
+                    hintText: 'Full Name',
+                    image: Assets.imagesFrame,
+                  ),
+                  SizedBox(height: 16),
                   CustomTextFormField(
                     hintText: 'phone',
                     image: Assets.imagesCall,
@@ -73,18 +80,23 @@ class _LoginViewState extends State<LoginView> {
                     hintText: 'passWord',
                     image: Assets.imagesLock,
                   ),
+                  SizedBox(height: 16),
+                  CustomTextFormField(
+                    hintText: 'Confirm passWord',
+                    image: Assets.imagesLock,
+                  ),
                 ],
               ),
             ),
             SizedBox(height: 24),
 
-            CustomButton(title: 'Login'),
+            CustomButton(title: 'Sign Up'),
             SizedBox(height: 24),
             CustomRow(
-              text1: 'Dont have an account?',
-              text2: 'Sign Up',
+              text1: 'Already have an account?',
+              text2: 'Login',
               onTap: () {
-                GoRouter.of(context).push(AppRouter.kSingUpView);
+                GoRouter.of(context).pop(AppRouter.kLoginView);
               },
             ),
             SizedBox(height: 24),
@@ -93,9 +105,9 @@ class _LoginViewState extends State<LoginView> {
             SignWithGoogleButton(),
             SizedBox(height: 40),
             BottomText(
-              text1: '     By continuing, you agree to \n',
-              text2: ' Terms of Use',
-              text3: 'and',
+              text1: 'By creating an account, you agree to our ',
+              text2: 'Terms \n           and Conditions',
+              text3: ' and ',
               text4: 'Privacy Policy',
             ),
             SizedBox(height: 48),

@@ -1,12 +1,9 @@
-
 import 'package:docnow_app/core/utils/app_color.dart';
 import 'package:flutter/material.dart';
 
 class BottomText extends StatelessWidget {
-  const BottomText({
-    super.key,
-  });
-
+  const BottomText({super.key, required this.text1, required this.text2, required this.text3, required this.text4});
+  final String text1, text2, text3, text4;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -14,28 +11,22 @@ class BottomText extends StatelessWidget {
         TextSpan(
           children: [
             TextSpan(
-              text: '     By continuing, you agree to \n',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
+              text: text1,
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
             ),
             TextSpan(
-              text: 'Terms of Service',
+              text: text2,
               style: TextStyle(
                 color: AppColor.kprimaryColor,
                 fontWeight: FontWeight.w500,
               ),
             ),
             TextSpan(
-              text: ' and ',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
+              text: text3,
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
             ),
             TextSpan(
-              text: 'Privacy Policy',
+              text: text4,
               style: TextStyle(
                 color: AppColor.kprimaryColor,
                 fontSize: 14,
