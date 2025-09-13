@@ -17,12 +17,12 @@ abstract class AppRouter {
       //     return LoginView();
       //   },
       // ),
-      // GoRoute(
-      //   path: '/',
-      //   builder: (context, state) {
-      //     return PaymentView();
-      //   },
-      // ),
+      GoRoute(
+        path: '/',
+        builder: (context, state) {
+          return PaymentView();
+        },
+      ),
       GoRoute(
         path: kSingUpView,
         builder: (context, state) {
@@ -30,7 +30,7 @@ abstract class AppRouter {
         },
       ),
       GoRoute(
-        path: '/',
+        path: kPaymentSuccessful,
         builder: (context, state) {
           return PaymentSuccessful();
         },

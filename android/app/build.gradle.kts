@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.docnow_app"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 21
     ndkVersion = flutter.ndkVersion
 
     compileOptions {

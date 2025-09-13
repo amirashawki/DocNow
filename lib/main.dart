@@ -1,8 +1,11 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:docnow_app/core/utils/api_keys.dart';
 import 'package:docnow_app/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 void main() {
+  Stripe.publishableKey = ApiKeys.publishableKey;
   runApp(
     DevicePreview(
       builder: (BuildContext context) {

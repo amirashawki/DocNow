@@ -1,4 +1,3 @@
-
 import 'package:docnow_app/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 

@@ -72,7 +72,7 @@ class PaymentSuccessful extends StatelessWidget {
               ),
             ),
             SizedBox(height: 100),
-            CustomButton(title: 'Pay Now'),
+            CustomButton(title: 'Booking Now'),
             SizedBox(height: 10),
           ],
         ),

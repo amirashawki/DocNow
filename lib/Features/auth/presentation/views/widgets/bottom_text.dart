@@ -2,7 +2,13 @@ import 'package:docnow_app/core/utils/app_color.dart';
 import 'package:flutter/material.dart';
 
 class BottomText extends StatelessWidget {
-  const BottomText({super.key, required this.text1, required this.text2, required this.text3, required this.text4});
+  const BottomText({
+    super.key,
+    required this.text1,
+    required this.text2,
+    required this.text3,
+    required this.text4,
+  });
   final String text1, text2, text3, text4;
   @override
   Widget build(BuildContext context) {
