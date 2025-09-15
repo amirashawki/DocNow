@@ -1,7 +1,9 @@
 import 'package:docnow_app/Features/auth/presentation/views/SignUp_view.dart';
 import 'package:docnow_app/Features/auth/presentation/views/login_view.dart';
+import 'package:docnow_app/Features/payment/presentation/manager/cubit/stripe_cubit.dart';
 import 'package:docnow_app/Features/payment/presentation/views/payment_%20successful.dart';
 import 'package:docnow_app/Features/payment/presentation/views/payment_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
@@ -20,7 +22,10 @@ abstract class AppRouter {
       GoRoute(
         path: '/',
         builder: (context, state) {
-          return PaymentView();
+          return BlocProvider(
+            create: (context) => StripeCubit(),
+            child: PaymentView(),
+          );
         },
       ),
       GoRoute(
