@@ -1,17 +1,11 @@
-import 'dart:developer';
 
-import 'package:docnow_app/Features/payment/presentation/manager/cubit/stripe_cubit.dart';
+import 'package:docnow_app/Features/payment/presentation/views/widgets/pay_button.dart';
 import 'package:docnow_app/Features/payment/presentation/views/widgets/payment_Info_row.dart';
 import 'package:docnow_app/core/utils/app_color.dart';
 import 'package:docnow_app/core/utils/app_images.dart';
-import 'package:docnow_app/core/utils/app_router.dart';
 import 'package:docnow_app/core/utils/app_styles.dart';
 import 'package:docnow_app/core/widgets/custom_appBar.dart';
-import 'package:docnow_app/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:docnow_app/Features/payment/data/models/payment_intent_input_model.dart';
-import 'package:go_router/go_router.dart';
 
 class PaymentView extends StatefulWidget {
   const PaymentView({super.key});
@@ -20,11 +14,7 @@ class PaymentView extends StatefulWidget {
   State<PaymentView> createState() => _PaymentViewState();
 }
 
-PaymentIntentInputModel paymentIntentInputModel = PaymentIntentInputModel(
-  amount: '1200',
-  currency: 'USD',
-  customerId: 'cus_T1Fp4oll006L8l',
-);
+
 
 class _PaymentViewState extends State<PaymentView> {
   String? selectedMethod = 'Stripe';
@@ -74,31 +64,7 @@ class _PaymentViewState extends State<PaymentView> {
             SizedBox(height: 16),
             buildPaymentOption('PayPal', Assets.imagesPayPal),
             SizedBox(height: 26),
-            BlocConsumer<StripeCubit, StripeState>(
-              listener: (context, state) {
-                if (state is StripeSuccess) {
-                  GoRouter.of(context).push(AppRouter.kPaymentSuccessful);
-                } else if (state is StripeFailure) {
-                  log(state.errorMessage);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(state.errorMessage),
-                      duration: Duration(seconds: 1000),
-                    ),
-                  );
-                }
-              },
-              builder: (context, state) {
-                return CustomButton(
-                  title: 'Pay Now',
-                  onTap: () {
-                    BlocProvider.of<StripeCubit>(context).makePayment(
-                      paymentIntentInputModel: paymentIntentInputModel,
-                    );
-                  },
-                );
-              },
-            ),
+            PayButton(),
           ],
         ),
       ),
@@ -133,6 +99,7 @@ class _PaymentViewState extends State<PaymentView> {
     );
   }
 }
+
 
 // class BuildPaymentOption extends StatefulWidget {
 //   const BuildPaymentOption({

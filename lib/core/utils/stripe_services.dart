@@ -53,7 +53,8 @@ class StripeServices {
     var ephemeralKey = await createEphemeralKey(
       customerId: paymentIntentModel.customer,
     );
-    var initPaymentSheetInputModel = InitPaymentSheetInputModel(
+    var initPaymentSheetInputModel =
+     InitPaymentSheetInputModel(
       customerId: paymentIntentModel.customer,
       ephemeralKey: ephemeralKey.secret!,
       clientSecret: paymentIntentModel.clientSecret!,
