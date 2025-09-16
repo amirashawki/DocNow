@@ -16,6 +16,7 @@ class PaymentView extends StatefulWidget {
 
 
 
+
 class _PaymentViewState extends State<PaymentView> {
   String? selectedMethod = 'Stripe';
   @override
@@ -60,18 +61,29 @@ class _PaymentViewState extends State<PaymentView> {
               ],
             ),
             SizedBox(height: 16),
-            buildPaymentOption('Stripe', Assets.imagesStripe),
+            buildPaymentOption(title: 'Stripe', imagePath: Assets.imagesStripe, isSelected: selectedMethod == 'Stripe'),
             SizedBox(height: 16),
-            buildPaymentOption('PayPal', Assets.imagesPayPal),
+            buildPaymentOption(title: 'PayPal', imagePath: Assets.imagesPayPal, isSelected: selectedMethod == 'PayPal'),
             SizedBox(height: 26),
-            PayButton(),
+            PayButton(isPaypal: selectedMethod == 'PayPal'),
           ],
         ),
       ),
     );
   }
 
-  buildPaymentOption(String title, String imagePath) {
+
+
+
+
+
+
+
+
+
+
+
+  buildPaymentOption({required String title, required String imagePath, required bool isSelected}) {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Color(0xffDCDCDC)),
@@ -87,12 +99,14 @@ class _PaymentViewState extends State<PaymentView> {
           onChanged: (value) {
             setState(() {
               selectedMethod = value;
+              isSelected = value == title;
             });
           },
         ),
         onTap: () {
           setState(() {
             selectedMethod = title;
+            isSelected = true;
           });
         },
       ),

@@ -1,7 +1,7 @@
 import 'dart:developer';
-
-import 'package:docnow_app/Features/payment/data/models/payment_intent_input_model.dart';
 import 'package:docnow_app/Features/payment/presentation/manager/cubit/stripe_cubit.dart';
+import 'package:docnow_app/core/function/exceute_payment_Stripe.dart';
+import 'package:docnow_app/core/function/exceute_payment_paypal.dart';
 import 'package:docnow_app/core/utils/app_router.dart';
 import 'package:docnow_app/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart' show GoRouter;
 
 class PayButton extends StatelessWidget {
-  const PayButton({super.key});
+  const PayButton({super.key,required this.isPaypal});
+  final bool isPaypal;
 
   @override
   Widget build(BuildContext context) {
@@ -28,18 +29,11 @@ class PayButton extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        PaymentIntentInputModel paymentIntentInputModel =
-            PaymentIntentInputModel(
-              amount: '1200',
-              currency: 'USD',
-              customerId: 'cus_T1Fp4oll006L8l',
-            );
         return CustomButton(
           title: 'Pay Now',
           onTap: () {
-            BlocProvider.of<StripeCubit>(
-              context,
-            ).makePayment(paymentIntentInputModel: paymentIntentInputModel);
+            isPaypal ? exceutepaymentPaypal(context): 
+            exceutePaymentStripe(context);
           },
         );
       },
